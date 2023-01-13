@@ -1,6 +1,7 @@
 # Ignore all */bin/ and */obj/ folders...
 [Bb]in/
 [Oo]bj/
+[Bb]ak/
 
 # Ignore backup files.
 *.orig

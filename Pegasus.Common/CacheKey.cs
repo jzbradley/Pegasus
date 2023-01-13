@@ -49,8 +49,7 @@ namespace Pegasus.Common
                 return true;
             }
 
-            var other = obj as CacheKey;
-            if (!(other is null))
+            if (obj is CacheKey other)
             {
                 return
                     this.location == other.location &&
