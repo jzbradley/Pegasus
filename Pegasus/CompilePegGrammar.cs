@@ -1,4 +1,5 @@
-﻿// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
+
 
 namespace Pegasus
 {
@@ -6,6 +7,7 @@ namespace Pegasus
     using System.Linq;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
+    using Pegasus.Compiler;
     using Properties;
 
     /// <summary>

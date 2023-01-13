@@ -1,42 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\SharedAssemblyInfo.props" />
+
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <StartupObject>Pegasus.Program</StartupObject>
-    <ApplicationIcon>..\Pegasus.ico</ApplicationIcon>
-    <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <CodeAnalysisRuleSet>Pegasus.ruleset</CodeAnalysisRuleSet>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <DefineConstants>TRACE</DefineConstants>
-    <PackageTags>parser;generator;compiler;lexer;PEG;DSL;AST</PackageTags>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <MinClientVersion>2.5</MinClientVersion>
-    <SignAssembly>true</SignAssembly>
-    <TargetFrameworks>net45;netcoreapp2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <DefineConstants>$(DefineConstants);NETFULL</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <DefineConstants>$(DefineConstants);NETCORE;NETCOREAPP2_0</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Update="Parser\CSharpParser.peg.g.cs">
-      <DependentUpon>CSharpParser.peg</DependentUpon>
-    </Compile>
-    <Compile Update="Parser\PegParser.peg.g.cs">
-      <DependentUpon>PegParser.peg</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+
+
   <ItemGroup>
     <WeaveTemplate Include="Compiler\CodeGenerator\PrefixedExpression.weave" />
     <WeaveTemplate Include="Compiler\CodeGenerator\Grammar.weave" />
@@ -57,42 +26,31 @@
     <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FixMe" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.6.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="1.3.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta006" PrivateAssets="All" />
-    <PackageReference Include="Weave" Version="2.0.1-ci0008" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="17.4.0" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.4.0" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.6.85" />
-    <PackageReference Include="System.CodeDom" Version="4.4.0" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Pegasus.Common\Pegasus.Common.csproj" />
+    <ProjectReference Include="..\Weave\Weave\Weave.csproj" />
   </ItemGroup>
-  <Target Name="ExcludeReferences" BeforeTargets="GenerateNuspec">
-    <ItemGroup>
-      <_FrameworkAssemblyReferences Remove="@(_FrameworkAssemblyReferences)" />
-    </ItemGroup>
-  </Target>
-  <Target Name="UpdatePackageOutput" BeforeTargets="_GetPackageFiles">
-    <Copy SourceFiles="$(SolutionDir)readme.md" DestinationFiles="$(OutputPath)readme.txt" SkipUnchangedFiles="true" />
-    <ItemGroup>
-      <Content Include="$(OutputPath)readme.txt">
-        <Pack>true</Pack>
-        <PackagePath />
-      </Content>
-      <Content Include="$(OutputPath)**\*.dll;$(OutputPath)**\*.exe;$(OutputPath)**\*.config;$(OutputPath)**\*.json;$(OutputPath)**\*.xml" Exclude="$(OutputPath)**\Microsoft.Build.*">
-        <Pack>true</Pack>
-        <PackagePath>build\</PackagePath>
-      </Content>
-    </ItemGroup>
-  </Target>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

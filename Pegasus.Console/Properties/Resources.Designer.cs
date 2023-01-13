@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pegasus.Package {
+namespace Pegasus.Console.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Pegasus.Package {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Pegasus.Package.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Pegasus.Console.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace Pegasus.Package {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage:
+        ///    pegasus file.
+        /// </summary>
+        internal static string Usage {
+            get {
+                return ResourceManager.GetString("Usage", resourceCulture);
             }
         }
     }

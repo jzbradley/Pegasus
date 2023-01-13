@@ -4,6 +4,7 @@ namespace Pegasus.Tests
 {
     using System;
     using System.Linq;
+    using Pegasus;
     using NUnit.Framework;
 
     [TestFixture]

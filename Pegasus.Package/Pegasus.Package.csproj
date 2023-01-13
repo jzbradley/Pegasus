@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -18,7 +19,7 @@
     <AssemblyName>Pegasus.Package</AssemblyName>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -205,11 +206,6 @@
     <ProjectReference Include="..\Pegasus.Common\Pegasus.Common.csproj">
       <Project>{1fc19adf-446f-4118-8189-c25aadf12397}</Project>
       <Name>Pegasus.Common</Name>
-      <AdditionalProperties>TargetFramework=net45</AdditionalProperties>
-    </ProjectReference>
-    <ProjectReference Include="..\Pegasus\Pegasus.csproj">
-      <Project>{58f12d13-9997-4c29-90ce-3c6c7409ba68}</Project>
-      <Name>Pegasus</Name>
       <AdditionalProperties>TargetFramework=net45</AdditionalProperties>
     </ProjectReference>
     <ProjectReference Include="..\Pegasus.Templates\Pegasus.Templates.csproj">
